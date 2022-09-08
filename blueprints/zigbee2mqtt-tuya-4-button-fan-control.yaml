@@ -30,60 +30,71 @@ action:
 - choose:
   - conditions:
     - '{{ command == ''1_single'' }}'
+    sequence:
       - service: fan.turn_on
         data:
           percentage: 25
         target: !input fan_target
   - conditions:
     - '{{ command == ''2_single'' }}'
+    sequence:
       - service: fan.turn_on
         data:
           percentage: 50
         target: !input fan_target
   - conditions:
     - '{{ command == ''3_single'' }}'
+    sequence:
       - service: fan.turn_on
         data:
           percentage: 75
         target: !input fan_target
   - conditions:
     - '{{ command == ''4_single'' }}'
+    sequence:
       - service: fan.turn_on
         data:
           percentage: 100
         target: !input fan_target
   - conditions:
     - '{{ command == ''1_double'' }}'
+    sequence:
       - service: fan.turn_off
         target: !input fan_target
         data: {}   
   - conditions:
     - '{{ command == ''2_double'' }}'
+    sequence:
       - service: fan.turn_off
         target: !input fan_target
         data: {}    
   - conditions:
     - '{{ command == ''3_double'' }}'
+    sequence:
       - service: fan.turn_off
         target: !input fan_target
         data: {}  
   - conditions:
     - '{{ command == ''4_double'' }}'
+    sequence:
       - service: fan.turn_off
         target: !input fan_target
         data: {}  
   - conditions:
     - '{{ command == ''1_hold'' }}'
+    sequence:
       - service: fan.turn_off
         target: !input fan_target
         data: {}  
   - conditions:
     - '{{ command == ''2_hold'' }}'
+    sequence:
       - service: fan.turn_off
         target: !input fan_target
         data: {}  
   - conditions:
     - '{{ command == ''3_hold'' }}'
+    sequence:
       - service: fan.turn_off
         target: !input fan_target
         data: {}  
