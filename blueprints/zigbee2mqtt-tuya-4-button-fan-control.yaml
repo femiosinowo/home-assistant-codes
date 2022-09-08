@@ -1,0 +1,95 @@
+blueprint:
+  name: Zigbee2MQTT - Tuya 4-Button Fan Control
+  description: Automate your Tuya 4-Button Fan Control via Zigbee2MQTT.
+  domain: automation
+  source_url: https://github.com/home-assistant/core/blob/dev/homeassistant/components/automation/blueprints/motion_light.yaml
+  input:
+    switch:
+      name: Tuya 4-Button Fan Control
+      description: Tuya 4-Button Fan Control to use
+      selector:
+        entity:
+          integration: mqtt
+          domain: sensor
+          multiple: false
+    fan_target:
+      name: Fan
+      selector:
+        target:
+          entity:
+            domain: fan
+mode: restart
+max_exceeded: silent
+trigger:
+- platform: state
+  entity_id: !input switch
+  attribute: action
+action:
+- variables:
+    command: '{{ trigger.to_state.state }}'
+- choose:
+  - conditions:
+    - '{{ command == ''1_single'' }}'
+      - service: fan.turn_on
+        data:
+          percentage: 100
+        target: !input fan_target
+  - conditions:
+    - '{{ command == ''2_single'' }}'
+      - service: fan.turn_on
+        data:
+          percentage: 100
+        target: !input fan_target
+  - conditions:
+    - '{{ command == ''3_single'' }}'
+      - service: fan.turn_on
+        data:
+          percentage: 100
+        target: !input fan_target
+  - conditions:
+    - '{{ command == ''4_single'' }}'
+      - service: fan.turn_on
+        data:
+          percentage: 100
+        target: !input fan_target
+  - conditions:
+    - '{{ command == ''1_double'' }}'
+      - service: fan.turn_on
+        data:
+          percentage: 100
+        target: !input fan_target
+  - conditions:
+    - '{{ command == ''2_double'' }}'
+      - service: fan.turn_off
+        target: !input fan_target
+        data: {}    
+  - conditions:
+    - '{{ command == ''3_double'' }}'
+      - service: fan.turn_off
+        target: !input fan_target
+        data: {}  
+  - conditions:
+    - '{{ command == ''4_double'' }}'
+      - service: fan.turn_off
+        target: !input fan_target
+        data: {}  
+  - conditions:
+    - '{{ command == ''1_hold'' }}'
+      - service: fan.turn_off
+        target: !input fan_target
+        data: {}  
+  - conditions:
+    - '{{ command == ''2_hold'' }}'
+      - service: fan.turn_off
+        target: !input fan_target
+        data: {}  
+  - conditions:
+    - '{{ command == ''3_hold'' }}'
+      - service: fan.turn_off
+        target: !input fan_target
+        data: {}  
+  - conditions:
+    - '{{ command == ''4_hold'' }}'
+      - service: fan.turn_off
+        target: !input fan_target
+        data: {}  
