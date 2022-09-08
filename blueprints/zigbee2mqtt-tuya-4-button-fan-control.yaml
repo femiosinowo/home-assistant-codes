@@ -2,7 +2,7 @@ blueprint:
   name: Zigbee2MQTT - Tuya 4-Button Fan Control
   description: Automate your Tuya 4-Button Fan Control via Zigbee2MQTT.
   domain: automation
-  source_url: https://github.com/home-assistant/core/blob/dev/homeassistant/components/automation/blueprints/motion_light.yaml
+  source_url: https://raw.githubusercontent.com/femiosinowo/home-assistant-codes/main/blueprints/zigbee2mqtt-tuya-4-button-fan-control.yaml
   input:
     switch:
       name: Tuya 4-Button Fan Control
