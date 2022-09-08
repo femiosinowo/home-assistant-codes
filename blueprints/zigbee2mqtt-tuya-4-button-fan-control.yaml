@@ -100,6 +100,7 @@ action:
         data: {}  
   - conditions:
     - '{{ command == ''4_hold'' }}'
+    sequence:
       - service: fan.turn_off
         target: !input fan_target
         data: {}  
