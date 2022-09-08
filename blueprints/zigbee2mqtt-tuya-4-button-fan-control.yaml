@@ -32,19 +32,19 @@ action:
     - '{{ command == ''1_single'' }}'
       - service: fan.turn_on
         data:
-          percentage: 100
+          percentage: 25
         target: !input fan_target
   - conditions:
     - '{{ command == ''2_single'' }}'
       - service: fan.turn_on
         data:
-          percentage: 100
+          percentage: 50
         target: !input fan_target
   - conditions:
     - '{{ command == ''3_single'' }}'
       - service: fan.turn_on
         data:
-          percentage: 100
+          percentage: 75
         target: !input fan_target
   - conditions:
     - '{{ command == ''4_single'' }}'
@@ -54,10 +54,9 @@ action:
         target: !input fan_target
   - conditions:
     - '{{ command == ''1_double'' }}'
-      - service: fan.turn_on
-        data:
-          percentage: 100
+      - service: fan.turn_off
         target: !input fan_target
+        data: {}   
   - conditions:
     - '{{ command == ''2_double'' }}'
       - service: fan.turn_off
