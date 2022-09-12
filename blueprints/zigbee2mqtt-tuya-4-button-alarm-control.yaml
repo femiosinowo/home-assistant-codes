@@ -93,6 +93,7 @@ action:
         data: {}  
   - conditions:
     - '{{ command == ''4_hold'' }}'
+    sequence:
       - service: alarm_control_panel.alarm_disarm
         target: !input panel_target
         data: {}  
