@@ -17,7 +17,7 @@ blueprint:
       selector:
         target:
           entity:
-            domain: panel
+            domain: alarm_control_panel
 mode: restart
 max_exceeded: silent
 trigger:
