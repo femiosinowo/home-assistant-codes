@@ -1,1 +1,98 @@
-
+blueprint:
+  name: Zigbee2MQTT - Tuya 4-Button Alarm
+  description: Automate your Tuya 4-Button Alarm via Zigbee2MQTT.
+  domain: automation
+  source_url: https://raw.githubusercontent.com/femiosinowo/home-assistant-codes/main/blueprints/zigbee2mqtt-tuya-4-button-fan-control.yaml
+  input:
+    switch:
+      name: Tuya 4-Button Alarm
+      description: Tuya 4-Button Alarm to use
+      selector:
+        entity:
+          integration: mqtt
+          domain: sensor
+          multiple: false
+    panel_target:
+      name: Panel
+      selector:
+        target:
+          entity:
+            domain: panel
+mode: restart
+max_exceeded: silent
+trigger:
+- platform: state
+  entity_id: !input switch
+  attribute: action
+action:
+- variables:
+    command: '{{ trigger.to_state.state }}'
+- choose:
+  - conditions:
+    - '{{ command == ''1_single'' }}'
+    sequence:
+      - service: alarm_control_panel.alarm_arm_home
+        target: !input panel_target
+        data: {} 
+  - conditions:
+    - '{{ command == ''2_single'' }}'
+    sequence:
+      - service: alarm_control_panel.alarm_arm_home
+        target: !input panel_target
+        data: {} 
+  - conditions:
+    - '{{ command == ''3_single'' }}'
+    sequence:
+      - service: alarm_control_panel.alarm_arm_home
+        target: !input panel_target
+        data: {} 
+  - conditions:
+    - '{{ command == ''4_single'' }}'
+    sequence:
+  - conditions:
+    - '{{ command == ''1_double'' }}'
+    sequence: 
+      - service: alarm_control_panel.alarm_disarm
+        target: !input panel_target
+        data: {}  
+  - conditions:
+    - '{{ command == ''2_double'' }}'
+    sequence:
+      - service: alarm_control_panel.alarm_disarm
+        target: !input panel_target
+        data: {}    
+  - conditions:
+    - '{{ command == ''3_double'' }}'
+    sequence:
+      - service: alarm_control_panel.alarm_disarm
+        target: !input panel_target
+        data: {}  
+  - conditions:
+    - '{{ command == ''4_double'' }}'
+    sequence:
+      - service: alarm_control_panel.alarm_disarm
+        target: !input panel_target
+        data: {}  
+  - conditions:
+    - '{{ command == ''1_hold'' }}'
+    sequence:
+      - service: alarm_control_panel.alarm_arm_home
+        target: !input panel_target
+        data: {}  
+  - conditions:
+    - '{{ command == ''2_hold'' }}'
+    sequence:
+      - service: alarm_control_panel.alarm_disarm
+        target: !input panel_target
+        data: {}  
+  - conditions:
+    - '{{ command == ''3_hold'' }}'
+    sequence:
+      - service: alarm_control_panel.alarm_disarm
+        target: !input panel_target
+        data: {}  
+  - conditions:
+    - '{{ command == ''4_hold'' }}'
+      - service: alarm_control_panel.alarm_disarm
+        target: !input panel_target
+        data: {}  
