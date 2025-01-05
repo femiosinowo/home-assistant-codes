@@ -8,9 +8,9 @@ blueprint:
       name: Tuya 4-Button Fan Control
       description: Tuya 4-Button Fan Control to use
       selector:
-        entity:
+        device:
           integration: mqtt
-          domain: sensor
+          #domain: sensor
           multiple: false
     fan_target:
       name: Fan
