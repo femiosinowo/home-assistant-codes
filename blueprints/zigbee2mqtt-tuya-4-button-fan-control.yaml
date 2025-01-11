@@ -22,7 +22,7 @@ mode: restart
 max_exceeded: silent
 trigger:
 - platform: state
-  entity_id: !input switch
+  device_id: !input switch
   attribute: action
 action:
 - variables:
