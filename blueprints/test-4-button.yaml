@@ -9,12 +9,6 @@ blueprint:
       selector:
         device:
           integration: mqtt
-    fan_target:
-      name: Fan
-      selector:
-        target:
-          entity:
-            domain: fan
     # Button 1 Actions
     button_one_short_press:
       name: Single Press - Button 1 (Lower-Left)
