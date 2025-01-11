@@ -21,8 +21,9 @@ blueprint:
 mode: restart
 max_exceeded: silent
 trigger:
-- platform: state
+- platform: device
   device_id: !input switch
+  domain: mqtt
   attribute: action
 action:
 - variables:
